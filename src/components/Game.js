@@ -5,19 +5,31 @@ import EndingScreen from './EndingScreen';
 import Story from './Story';
 import Inventory from './Inventory';
 import CharacterStats from './CharacterStats';
+import Achievements from "./Achievements";
+import Conversation from "./Conversation";
+import Image from "./Image";
+import Puzzle from "./Puzzle";
+import SaveLoad from "./SaveLoad";
+import Leaderboard from "./Leaderboard";
 
 const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 const ContentContainer = styled.div`
   text-align: center;
-  margin-bottom: 20px;
 `;
+
+const scoresArray = [
+  { playerName: 'Player 1', score: 100, date: '2023-10-24' },
+  { playerName: 'Player 2', score: 85, date: '2023-10-25' },
+  { playerName: 'Player 3', score: 120, date: '2023-10-26' },
+  // Add more sample scores as needed
+];
+
 
 const Game = ({ story }) => {
   const [currentStory, setCurrentStory] = useState(story[0]);
@@ -88,6 +100,15 @@ const Game = ({ story }) => {
 
           <Inventory items={inventory} />
           <CharacterStats stats={characterStats} />
+          <Puzzle
+            puzzle={{ description: '', answer: '' }}
+            onSuccess={() => handlePuzzleSuccess()}
+          />
+          <Conversation dialogue={[]} choices={[]} />
+          <SaveLoad />
+          <Achievements achievements={[]} />
+          <Leaderboard scores={scoresArray} />
+          <Image src="" alt="" />
           {/* Include other components as needed */}
         </>
       )}

@@ -9,6 +9,8 @@ const InventoryContainer = styled.div`
 `;
 
 const InventoryItem = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 5px;
 `;
 
@@ -18,10 +20,13 @@ const Inventory = ({ items }) => {
       <h3>Inventory</h3>
       {items.length > 0 ? (
         items.map((item, index) => (
-          <InventoryItem key={index}>{item}</InventoryItem>
+          <InventoryItem key={index}>
+            <span>{item.name}</span>
+            <span>{item.description}</span>
+          </InventoryItem>
         ))
       ) : (
-        <p>Your inventory is empty.</p>
+        <p>No items in the inventory.</p>
       )}
     </InventoryContainer>
   );
