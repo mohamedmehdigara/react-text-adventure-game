@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ChoiceButton from './ChoiceButton';
 import EndingScreen from './EndingScreen';
-import Story from './Story'; // Import the Story component
+import Story from './Story';
 import Inventory from './Inventory';
 import CharacterStats from './CharacterStats';
 import Puzzle from './Puzzle';
@@ -17,12 +17,10 @@ const GameContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 const ContentContainer = styled.div`
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 const Game = ({ story }) => {
@@ -40,20 +38,8 @@ const Game = ({ story }) => {
   };
 
   const handlePuzzleSuccess = () => {
-    // You can perform actions when the player successfully solves a puzzle here
-    // For example, you can add an item to the player's inventory, update character stats, or advance the story.
-    // Here, we'll add an item to the inventory as an example.
-  
-    // Create a new item to add to the inventory
     const newItem = 'Puzzle Key';
-  
-    // Update the inventory state to include the new item
     setInventory((prevInventory) => [...prevInventory, newItem]);
-  
-    // Optionally, update the story to provide feedback or continue the game
-    // You can set the next story segment here if needed.
-  
-    // Display a success message to the player
     console.log('Congratulations! You solved the puzzle and found a key.');
   };
 
@@ -78,7 +64,10 @@ const Game = ({ story }) => {
 
           <Inventory items={inventory} />
           <CharacterStats stats={{ health: 100, energy: 100 }} />
-          <Puzzle puzzle={{ description: '', answer: '' }} onSuccess={() => handlePuzzleSuccess()} />
+          <Puzzle
+            puzzle={{ description: '', answer: '' }}
+            onSuccess={() => handlePuzzleSuccess()}
+          />
           <Conversation dialogue={[]} choices={[]} />
           <SaveLoad />
           <Achievements achievements={[]} />
