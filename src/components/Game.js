@@ -79,6 +79,7 @@ const handlePuzzleSuccess = () => {
           <Achievements achievements={[] /* Your achievements data */} />
           <Leaderboard />
           <Image src='' alt='' />
+          
         </>
       )}
     </GameContainer>
