@@ -70,26 +70,30 @@ const Game = ({ story }) => {
           </ContentContainer>
 
           {currentStory.choices.map((choice) => (
-  <ChoiceButton
-    key={choice.id}
-    text={choice.text}
-    onClick={() => handleChoice(choice)}
-  />
-))}
+            <ChoiceButton
+              key={choice.id}
+              text={choice.text}
+              onClick={() => handleChoice(choice)}
+            />
+          ))}
 
-{currentStory.dialogue && currentStory.dialogueChoices && (
-  <Conversation dialogue={currentStory.dialogue} choices={currentStory.dialogueChoices} />
-)}
+          {currentStory.dialogue && currentStory.dialogueChoices && (
+            <Conversation dialogue={currentStory.dialogue} choices={currentStory.dialogueChoices} />
+          )}
 
-<SaveLoad />
-<Achievements  />
-<Leaderboard />
-<Image src={currentStory.imageSrc} alt={currentStory.imageAlt} />
+         
+            <CharacterStats/>
+          
 
+          <SaveLoad />
+          <Achievements />
+          <Leaderboard />
+          <Image  />
         </>
       )}
     </GameContainer>
   );
 };
+
 
 export default Game;
