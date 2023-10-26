@@ -40,25 +40,18 @@ const Achievements = ({ achievements }) => {
   return (
     <AchievementsContainer>
       <h3>Achievements</h3>
-      {achievements.length > 0 ? (
+      {achievements && achievements.length > 0 ? (
         achievements.map((achievement, index) => (
           <AchievementItem key={index}>
-            <AchievementIcon>{getIconForAchievement(achievement.type)}</AchievementIcon>
-            <div>
-              <span>{achievement.name}</span>
-              <p>{achievement.description}</p>
-              {achievement.progress && (
-                <ProgressContainer>
-                  <ProgressBar progress={achievement.progress}>{achievement.progress}%</ProgressBar>
-                </ProgressContainer>
-              )}
-            </div>
+            <span>{achievement.name}</span>
+            <span>{achievement.description}</span>
           </AchievementItem>
         ))
       ) : (
         <p>No achievements yet.</p>
       )}
     </AchievementsContainer>
+  
   );
 };
 

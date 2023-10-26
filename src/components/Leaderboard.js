@@ -23,37 +23,42 @@ const LeaderboardHeader = styled.div`
 
 
 const Leaderboard = ({ scores }) => {
-  const [sortBy, setSortBy] = useState('score'); // Default sorting by score
-  const [sortOrder, setSortOrder] = useState('desc'); // Default sorting in descending order
-  const [currentPage, setCurrentPage] = useState(1);
-  const scoresPerPage = 10; // Number of scores per page
+ 
 
-  // Function to handle sorting by score or other criteria
+  const [sortBy, setSortBy] = useState('score');
+  const [sortOrder, setSortOrder] = useState('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const scoresPerPage = 10;
+
+  if (!scores || scores.length === 0) {
+    return (
+      <LeaderboardContainer>
+        <h3>Leaderboard</h3>
+        <p>No scores to display.</p>
+      </LeaderboardContainer>
+    );
+  }
+
   const handleSort = (criteria) => {
     if (sortBy === criteria) {
-      // Toggle sorting order if the same criteria is selected
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
-      // If a new criteria is selected, set it as the sorting criteria and default to descending order
       setSortBy(criteria);
       setSortOrder('desc');
     }
   };
 
-  // Function to paginate the scores
   const paginateScores = (scores, page, perPage) => {
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
     return scores.slice(startIndex, endIndex);
   };
 
-  // Sort the scores based on the selected criteria and order
   const sortedScores = scores.sort((a, b) => {
     const order = sortOrder === 'asc' ? 1 : -1;
     return order * (a[sortBy] - b[sortBy]);
   });
 
-  // Get the scores for the current page
   const paginatedScores = paginateScores(sortedScores, currentPage, scoresPerPage);
 
   return (
@@ -71,7 +76,6 @@ const Leaderboard = ({ scores }) => {
           <span>{score.date}</span>
         </LeaderboardItem>
       ))}
-      {/* Pagination controls */}
       <div>
         <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
           Previous
@@ -87,5 +91,5 @@ const Leaderboard = ({ scores }) => {
     </LeaderboardContainer>
   );
 };
-
+  
 export default Leaderboard;
