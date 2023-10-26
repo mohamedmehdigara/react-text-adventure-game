@@ -16,6 +16,8 @@ const AchievementItem = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer; /* Add pointer cursor for interaction */
+  transition: background-color 0.3s; /* Add a subtle transition */
 `;
 
 const AchievementIcon = styled.span`
@@ -43,7 +45,6 @@ const NoAchievements = styled.p`
 
 const Achievements = ({ achievements }) => {
   const getIconForAchievement = (type) => {
-    // Define icons for different achievement types
     const icons = {
       combat: '⚔️',
       exploration: '🌍',
@@ -51,7 +52,7 @@ const Achievements = ({ achievements }) => {
       // Add more icons for other types
     };
 
-    return icons[type] || '🏆'; // Default trophy icon
+    return icons[type] || '🏆';
   };
 
   return (
@@ -59,7 +60,11 @@ const Achievements = ({ achievements }) => {
       <h3>Achievements</h3>
       {achievements && achievements.length > 0 ? (
         achievements.map((achievement, index) => (
-          <AchievementItem key={index}>
+          <AchievementItem
+            key={index}
+            title="Click to view details"
+            onClick={() => alert(`Achievement Details: ${achievement.name}`)} // Replace with a modal or details view
+          >
             <AchievementIcon>
               {getIconForAchievement(achievement.type)}
             </AchievementIcon>

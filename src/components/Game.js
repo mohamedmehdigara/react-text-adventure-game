@@ -82,7 +82,7 @@ const Game = ({ story }) => {
 )}
 
 <SaveLoad />
-<Achievements achievements={currentStory.achievements} />
+<Achievements  />
 <Leaderboard />
 <Image src={currentStory.imageSrc} alt={currentStory.imageAlt} />
 
