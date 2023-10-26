@@ -1,47 +1,86 @@
 // Define constants for story IDs
-export const STORY_IDS = {
-  START: 'start',
-  LEFT_PATH: 'left-path',
-  RIGHT_PATH: 'right-path',
-  TREASURE_ENDING: 'treasure-ending',
-  DRAGON_ENDING: 'dragon-ending',
-  NO_MORE_CHOICES_ENDING: 'no-more-choices-ending',
+// Define choice IDs as constants
+const Choices = {
+  GO_LEFT: 'go-left',
+  GO_RIGHT: 'go-right',
+  TAKE_TREASURE: 'take-treasure',
+  CONTINUE_EXPLORING: 'continue-exploring',
+  FIGHT_DRAGON: 'fight-dragon',
+  RUN_AWAY: 'run-away',
 };
 
-// Define story content separately
-const storyContent = {
-  [STORY_IDS.START]: {
+const story = [
+  {
+    id: 'start',
     title: 'Welcome to the Adventure!',
     text: 'You find yourself in a dark forest. What will you do?',
     choices: [
-      { id: 'go-left', text: 'Go left', nextStoryId: STORY_IDS.LEFT_PATH },
-      { id: 'go-right', text: 'Go right', nextStoryId: STORY_IDS.RIGHT_PATH },
+      {
+        id: Choices.GO_LEFT,
+        text: 'Go left',
+        nextStoryId: 'left-path',
+      },
+      {
+        id: Choices.GO_RIGHT,
+        text: 'Go right',
+        nextStoryId: 'right-path',
+      },
     ],
   },
-  [STORY_IDS.LEFT_PATH]: {
+  {
+    id: 'left-path',
     title: 'The Left Path',
     text: 'You discover a hidden treasure! What will you do now?',
     choices: [
-      { id: 'take-treasure', text: 'Take the treasure', nextStoryId: STORY_IDS.TREASURE_ENDING },
-      { id: 'continue-exploring', text: 'Continue exploring', nextStoryId: STORY_IDS.START },
+      {
+        id: Choices.TAKE_TREASURE,
+        text: 'Take the treasure',
+        nextStoryId: 'treasure-ending',
+      },
+      {
+        id: Choices.CONTINUE_EXPLORING,
+        text: 'Continue exploring',
+        nextStoryId: 'start',
+      },
     ],
   },
-  [STORY_IDS.RIGHT_PATH]: {
+  {
+    id: 'right-path',
     title: 'The Right Path',
     text: 'You encounter a fierce dragon. What will you do?',
     choices: [
-      { id: 'fight-dragon', text: 'Fight the dragon', nextStoryId: STORY_IDS.DRAGON_ENDING },
-      { id: 'run-away', text: 'Run away', nextStoryId: STORY_IDS.START },
-    ],
-  },
+      {
+        id: Choices.FIGHT_DRAGON,
+        text: 'Fight the dragon',
+        nextStoryId: 'dragon-ending',
+      },
+      {
+        id: Choices.RUN_AWAY,
+        text: 'Run away',
+        nextStoryId: 'start',
+      },
+    
+    ]},
   // Add more story segments as needed
-};
-
-// Export the story structure
-export const story = Object.entries(storyContent).map(([id, content]) => ({
-  id,
-  ...content,
-  choices: content.choices.map((choice) => ({ ...choice })),
-}));
+  // ...
+  {
+    id: 'treasure-ending',
+    title: 'Treasure Found!',
+    text: 'Congratulations! You have found the hidden treasure and won the game!',
+    choices: [],
+  },
+  {
+    id: 'dragon-ending',
+    title: 'Defeat',
+    text: 'You bravely fought the dragon but sadly lost. Game over!',
+    choices: [],
+  },
+  {
+    id: 'no-more-choices-ending',
+    title: 'Game Over',
+    text: 'You have reached the end of your adventure. Thanks for playing!',
+    choices: [],
+  },
+];
 
 export default story;
