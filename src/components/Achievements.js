@@ -14,7 +14,8 @@ const AchievementsContainer = styled.div`
 const AchievementItem = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
 const AchievementIcon = styled.span`
@@ -36,35 +37,48 @@ const ProgressBar = styled.div`
   color: white;
 `;
 
+const NoAchievements = styled.p`
+  font-style: italic;
+`;
+
 const Achievements = ({ achievements }) => {
+  const getIconForAchievement = (type) => {
+    // Define icons for different achievement types
+    const icons = {
+      combat: '⚔️',
+      exploration: '🌍',
+      puzzle: '🧩',
+      // Add more icons for other types
+    };
+
+    return icons[type] || '🏆'; // Default trophy icon
+  };
+
   return (
     <AchievementsContainer>
       <h3>Achievements</h3>
       {achievements && achievements.length > 0 ? (
         achievements.map((achievement, index) => (
           <AchievementItem key={index}>
-            <span>{achievement.name}</span>
-            <span>{achievement.description}</span>
+            <AchievementIcon>
+              {getIconForAchievement(achievement.type)}
+            </AchievementIcon>
+            <div>
+              <span>{achievement.name}</span>
+              <span>{achievement.description}</span>
+            </div>
+            <ProgressContainer>
+              <ProgressBar progress={achievement.progress}>
+                {achievement.progress}%
+              </ProgressBar>
+            </ProgressContainer>
           </AchievementItem>
         ))
       ) : (
-        <p>No achievements yet.</p>
+        <NoAchievements>No achievements yet.</NoAchievements>
       )}
     </AchievementsContainer>
-  
   );
-};
-
-const getIconForAchievement = (type) => {
-  // Define icons for different achievement types
-  const icons = {
-    combat: '⚔️',
-    exploration: '🌍',
-    puzzle: '🧩',
-    // Add more icons for other types
-  };
-
-  return icons[type] || '🏆'; // Default trophy icon
 };
 
 export default Achievements;
