@@ -17,10 +17,17 @@ const StatItem = styled.div`
   margin-bottom: 5px;
   font-weight: ${(props) => (props.isCritical ? 'bold' : 'normal')};
   color: ${(props) => (props.isCritical ? 'red' : 'inherit')};
+  padding: 5px; /* Increase padding for better readability */
+  border-radius: 5px; /* Add rounded corners for a polished look */
+  transition: background-color 0.3s; /* Add a subtle transition for hover effect */
+  &:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+  }
 `;
 
 const Icon = styled.span`
   margin-right: 5px;
+  font-size: 18px; /* Slightly reduce icon size for better alignment */
 `;
 
 const CharacterStats = ({ stats }) => {

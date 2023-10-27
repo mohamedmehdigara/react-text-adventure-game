@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ChoiceButton from './ChoiceButton';
 import EndingScreen from './EndingScreen';
-import Story from './Story';
-import Inventory from './Inventory';
+import Conversation from './Conversation'; // Import only necessary components
+
 import CharacterStats from './CharacterStats';
-import Puzzle from './Puzzle';
-import Conversation from './Conversation';
 import SaveLoad from './SaveLoad';
 import Achievements from './Achievements';
-import Leaderboard from './Leaderboard';
 import Image from './Image';
 
 const GameContainer = styled.div`
@@ -17,12 +14,10 @@ const GameContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 const ContentContainer = styled.div`
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 const Game = ({ story }) => {
@@ -81,19 +76,14 @@ const Game = ({ story }) => {
             <Conversation dialogue={currentStory.dialogue} choices={currentStory.dialogueChoices} />
           )}
 
-         
-            <CharacterStats/>
-          
-
+          <CharacterStats stats={characterStats} /> {/* Pass character stats as props */}
           <SaveLoad />
-          <Achievements />
-          <Leaderboard />
-          <Image  />
+          <Achievements achievements={currentStory.achievements} /> {/* Pass achievements as props */}
+          <Image src={currentStory.imageSrc} alt={currentStory.imageAlt} /> {/* Pass image details as props */}
         </>
       )}
     </GameContainer>
   );
 };
-
 
 export default Game;

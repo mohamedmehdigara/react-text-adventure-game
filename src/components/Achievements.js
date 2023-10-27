@@ -17,7 +17,11 @@ const AchievementItem = styled.div`
   align-items: center;
   margin-bottom: 10px;
   cursor: pointer; /* Add pointer cursor for interaction */
-  transition: background-color 0.3s; /* Add a subtle transition */
+  transition: background-color 0.3s; /* Add a subtle transition for hover effect */
+  padding: 10px; /* Increase the clickable area for better interaction */
+  &:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+  }
 `;
 
 const AchievementIcon = styled.span`
