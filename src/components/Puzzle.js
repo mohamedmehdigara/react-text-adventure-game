@@ -39,16 +39,14 @@ const Puzzle = ({ puzzle, onSuccess }) => {
   return (
     <PuzzleContainer>
       <PuzzleText>{puzzle.description}</PuzzleText>
+      <PuzzleInput
+        type="text"
+        placeholder="Enter your answer"
+        value={userInput}
+        onChange={handleInputChange}
+      />
       {!isSolved ? (
-        <div>
-          <PuzzleInput
-            type="text"
-            placeholder="Enter your answer"
-            value={userInput}
-            onChange={handleInputChange}
-          />
-          <PuzzleButton onClick={handleSolvePuzzle}>Solve</PuzzleButton>
-        </div>
+        <PuzzleButton onClick={handleSolvePuzzle}>Solve</PuzzleButton>
       ) : (
         <p>Congratulations! Puzzle solved.</p>
       )}

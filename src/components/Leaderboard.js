@@ -18,13 +18,23 @@ const LeaderboardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  cursor: pointer;
 `;
 
+const Pagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+`;
 
+const StyledButton = styled.button`
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 10px;
+`;
 
 const Leaderboard = ({ scores }) => {
- 
-
   const [sortBy, setSortBy] = useState('score');
   const [sortOrder, setSortOrder] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
@@ -76,20 +86,23 @@ const Leaderboard = ({ scores }) => {
           <span>{score.date}</span>
         </LeaderboardItem>
       ))}
-      <div>
-        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+      <Pagination>
+        <StyledButton
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
           Previous
-        </button>
+        </StyledButton>
         <span>Page {currentPage}</span>
-        <button
+        <StyledButton
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={paginatedScores.length < scoresPerPage}
         >
           Next
-        </button>
-      </div>
+        </StyledButton>
+      </Pagination>
     </LeaderboardContainer>
   );
 };
-  
+
 export default Leaderboard;

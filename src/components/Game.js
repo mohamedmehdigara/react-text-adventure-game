@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ChoiceButton from './ChoiceButton';
 import EndingScreen from './EndingScreen';
-import Conversation from './Conversation'; // Import only necessary components
-
+import Story from './Story';
+import Inventory from './Inventory';
 import CharacterStats from './CharacterStats';
+import Puzzle from './Puzzle';
+import Conversation from './Conversation';
 import SaveLoad from './SaveLoad';
 import Achievements from './Achievements';
+import Leaderboard from './Leaderboard';
 import Image from './Image';
 
 const GameContainer = styled.div`
@@ -14,10 +17,12 @@ const GameContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 `;
 
 const ContentContainer = styled.div`
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Game = ({ story }) => {
@@ -76,10 +81,15 @@ const Game = ({ story }) => {
             <Conversation dialogue={currentStory.dialogue} choices={currentStory.dialogueChoices} />
           )}
 
-          <CharacterStats stats={characterStats} /> {/* Pass character stats as props */}
+          <CharacterStats stats={characterStats} /> {/* Added CharacterStats */}
+          <Inventory items={inventory} /> {/* Added Inventory */}
+          {currentStory.puzzle && (
+  <Puzzle puzzle={currentStory.puzzle} onSuccess={handlePuzzleSuccess} />
+)}
           <SaveLoad />
-          <Achievements achievements={currentStory.achievements} /> {/* Pass achievements as props */}
-          <Image src={currentStory.imageSrc} alt={currentStory.imageAlt} /> {/* Pass image details as props */}
+          <Achievements achievements={currentStory.achievements} />
+          <Leaderboard />
+          <Image src={currentStory.imageSrc} alt={currentStory.imageAlt} />
         </>
       )}
     </GameContainer>

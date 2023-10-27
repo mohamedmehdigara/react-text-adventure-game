@@ -14,6 +14,10 @@ const InventoryItem = styled.div`
   margin-bottom: 5px;
 `;
 
+const NoItems = styled.p`
+  font-style: italic;
+`;
+
 const Inventory = ({ items }) => {
   return (
     <InventoryContainer>
@@ -26,7 +30,7 @@ const Inventory = ({ items }) => {
           </InventoryItem>
         ))
       ) : (
-        <p>No items in the inventory.</p>
+        <NoItems>No items in the inventory.</NoItems>
       )}
     </InventoryContainer>
   );
